@@ -2,8 +2,8 @@
   "name": "tiktok-brain",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
-  "scripts": {
+  "type":"module",
+    "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -15,6 +15,7 @@
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
+    "dotenv": "^16.3.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.7",
     "next": "13.4.7",
