@@ -1,6 +1,6 @@
 // import { PineconeClient } from "@pinecone-database/pinecone";
 
-// // const PINECONE_API_KEY = "0311d5eb-cf36-4c63-b591-66777ba9d7ec";
+// // const PINECONE_API_KEY = "";
 
 // // const indexName = "tiktok-comments";
 
@@ -19,12 +19,9 @@
 //   );
 //   console.log("Data successfully ingested into Pinecone:", upsertResponse);
 // }
-import fetch from "node-fetch";
+
 import { PineconeClient } from "@pinecone-database/pinecone";
-
-global.fetch = fetch;
-
-const PINECONE_API_KEY = "0311d5eb-cf36-4c63-b591-66777ba9d7ec";
+import "dotenv/config";
 
 export async function ingestData(data) {
   try {
@@ -32,7 +29,7 @@ export async function ingestData(data) {
 
     await client.init({
       environment: "northamerica-northeast1-gcp" ?? "",
-      apiKey: PINECONE_API_KEY ?? "",
+      apiKey: process.env.PINECONE_API_KEY ?? "",
     });
 
     const index = client.Index("tiktok-comments");
