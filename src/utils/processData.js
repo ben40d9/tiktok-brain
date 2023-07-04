@@ -10,16 +10,22 @@
 //   });
 // }
 
-import { LangChain, Embeddings } from "langchain";
-
+import { OpenAI } from "langchain";
 import "dotenv/config";
 
 export async function processData(data) {
-  // Initialize LangChainJS with your OpenAI API key
-  const langChain = new LangChain({ apiKey: process.env.OPENAI_API_KEY });
+  // Check if data is undefined or an empty array
+  if (!data || data.length === 0) {
+    console.error("No data to process");
+    return [];
+  }
 
-  // Create an instance of the Embeddings class
-  const embeddings = new Embeddings(langChain, "model-name");
+  // Create an instance of the OpenAI class
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    temperature: 0,
+    maxTokens: 500,
+  });
 
   // Process the data
   const processedData = [];
@@ -30,9 +36,11 @@ export async function processData(data) {
     try {
       // Create embeddings for the Comment and Reply3 fields
       commentEmbedding = item.Comment
-        ? await embeddings.create(item.Comment)
+        ? await openai.complete({ prompt: item.Comment })
         : [];
-      reply3Embedding = item.Reply3 ? await embeddings.create(item.Reply3) : [];
+      reply3Embedding = item.Reply3
+        ? await openai.complete({ prompt: item.Reply3 })
+        : [];
     } catch (error) {
       console.error("Error creating embeddings:", error);
     }
