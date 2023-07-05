@@ -6,6 +6,4 @@ const data = readSpreadsheet("../../tiktok-data.xlsx"); // replace with the path
 
 const processedData = processData(data);
 
-console.log(processedData);
-
 ingestData(processedData); // replace with your Pinecone API key and index name

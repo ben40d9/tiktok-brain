@@ -31,7 +31,7 @@ export async function ingestData(data) {
 
     await client.init({
       environment: "northamerica-northeast1-gcp" ?? "",
-      apiKey: process.env.PINECONE_API_KEY ?? "",
+      apiKey: `${process.env.PINECONE_API_KEY}` ?? "",
     });
 
     const index = client.Index("tiktok-comments");
@@ -46,7 +46,7 @@ export async function ingestData(data) {
     const upsertResponse = await index.upsert({
       upsertRequest: {
         vectors: data.map((item) => ({ id: item.id, values: item.vector })),
-        namespace: "tiktok-namespace",
+        namespace: "tiktok-comments",
       },
     });
     console.log("Data successfully ingested into Pinecone:", upsertResponse);
