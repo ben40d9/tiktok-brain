@@ -65,6 +65,32 @@
 //   return processedData;
 // }
 
+// import { App } from "embedchain";
+
+// export async function processData(data) {
+//   const processMe = await App();
+
+//   const data = await
+
+//   await processMe.add_local("qna_pair", )
+// }
+
+// export async function processData(data) {
+//   let filtered = await data
+
+//     // Remove any rows that don't have a value for the Comment or Reply3 fields
+//     .filter((item) => item.Comment.trim() !== "" && item.Reply3.trim() !== "")
+//     .map((item, index) => {
+//       console.log(
+//         `Processing item ${index}: Comment = ${item.Comment}, Reply3 = ${item.Reply3}`
+//       );
+//       return {
+//         id: index.toString(),
+//         vector: [item.Comment, item.Reply3],
+//       };
+//     });
+// }
+
 export function processData(data) {
   return (
     data
@@ -72,9 +98,9 @@ export function processData(data) {
       // Remove any rows that don't have a value for the Comment or Reply3 fields
       .filter((item) => item.Comment.trim() !== "" && item.Reply3.trim() !== "")
       .map((item, index) => {
-        console.log(
-          `Processing item ${index}: Comment = ${item.Comment}, Reply3 = ${item.Reply3}`
-        );
+        // console.log(
+        //   `Processing item ${index}: Comment = ${item.Comment}, Reply3 = ${item.Reply3}`
+        // );
         return {
           id: index.toString(),
           vector: [item.Comment, item.Reply3],
